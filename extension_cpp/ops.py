@@ -5,6 +5,9 @@ from torch import Tensor
 __all__ = ["lltm", "reference_lltm"]
 
 
+def matmul(input: Tensor, weights: Tensor) -> Tensor:
+    return torch.ops.extension_cpp.matmul_forward(input, weights)
+
 def lltm(
     input: Tensor, weights: Tensor, bias: Tensor, old_h: Tensor, old_cell: Tensor
 ) -> Tuple[Tensor, Tensor]:
